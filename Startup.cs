@@ -1,8 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using supermarket.sharp.api.Domain.Repositories;
+using supermarket.sharp.api.Domain.Services;
+using supermarket.sharp.api.Persistence.Contexts;
+using supermarket.sharp.api.Persistence.Repositories;
+using supermarket.sharp.api.Services;
 
 namespace supermarket.sharp.api
 {
@@ -19,6 +25,15 @@ namespace supermarket.sharp.api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseInMemoryDatabase("supermarket-sharp-api-in-memory");
+            });
+
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ICategoryService, CategoryService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,15 +1,27 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using supermarket.sharp.api.Domain.Models;
+using supermarket.sharp.api.Domain.Services;
 
 namespace supermarket.sharp.api.Controllers
 {
     [Route("api/[controller]")]
     public class CategoriesController : ControllerBase
     {
+
+        private readonly ICategoryService _categoryService;
+
+        public CategoriesController(ICategoryService categoryService)
+        {
+            _categoryService = categoryService;
+        }
         
         [HttpGet]
-        public int GetAllAsync()
+        public async Task<IEnumerable<Category>> GetAllAsync()
         {
-            return 0;
+            IEnumerable<Category> categories = await _categoryService.ListAsync();
+            return categories;
         }
     }
 }
