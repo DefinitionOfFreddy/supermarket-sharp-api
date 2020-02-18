@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using supermarket.sharp.api.Domain.Models;
 using supermarket.sharp.api.Domain.Services;
+using supermarket.sharp.api.Resources;
 
 namespace supermarket.sharp.api.Controllers
 {
@@ -11,17 +13,21 @@ namespace supermarket.sharp.api.Controllers
     {
 
         private readonly ICategoryService _categoryService;
+        private readonly IMapper _mapper;
 
-        public CategoriesController(ICategoryService categoryService)
+        public CategoriesController(ICategoryService categoryService, IMapper mapper)
         {
             _categoryService = categoryService;
+            _mapper = mapper;
         }
         
         [HttpGet]
-        public async Task<IEnumerable<Category>> GetAllAsync()
+        public async Task<IEnumerable<CategoryRessource>> GetAllAsync()
         {
             IEnumerable<Category> categories = await _categoryService.ListAsync();
-            return categories;
+            IEnumerable<CategoryRessource> ressources =
+                _mapper.Map<IEnumerable<Category>, IEnumerable<CategoryRessource>>(categories); 
+            return ressources;
         }
     }
 }

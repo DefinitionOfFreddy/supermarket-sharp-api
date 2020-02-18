@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -29,9 +30,12 @@ namespace supermarket.sharp.api
             services.AddDbContext<AppDbContext>(options =>
                 options.UseMySql("Server=127.0.0.1;Database=test;User=root;")
             );
+
+
             
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddAutoMapper(typeof(Startup));
 
         }
 
