@@ -1,0 +1,1 @@
+This is a little Api i made following a C# guide (https://www.freecodecamp.org/news/an-awesome-guide-on-how-to-build-restful-apis-with-asp-net-core-87b818123e28/) in order to learn the basics of the language. 
