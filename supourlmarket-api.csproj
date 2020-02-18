@@ -4,7 +4,4 @@
     <RootNamespace>supermarket.sharp.api</RootNamespace>
     <AssemblyName>supermarket.sharp.api</AssemblyName>
   </PropertyGroup>
-  <ItemGroup>
-    <Folder Include="Domain" />
-  </ItemGroup>
 </Project>
