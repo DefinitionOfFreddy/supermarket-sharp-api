@@ -4,6 +4,8 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using supermarket.sharp.api.Domain.Models;
 using supermarket.sharp.api.Domain.Services;
+using supermarket.sharp.api.Domain.Services.Communication;
+using supermarket.sharp.api.Extensions;
 using supermarket.sharp.api.Resources;
 
 namespace supermarket.sharp.api.Controllers
@@ -28,6 +30,22 @@ namespace supermarket.sharp.api.Controllers
             IEnumerable<CategoryRessource> ressources =
                 _mapper.Map<IEnumerable<Category>, IEnumerable<CategoryRessource>>(categories); 
             return ressources;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PostAsync([FromBody] SaveCategoryRessource ressource)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState.GetErrorMessage());
+            
+            Category category = _mapper.Map<SaveCategoryRessource, Category>(ressource);
+            SaveCategoryResponse result = await _categoryService.SaveAsync(category);
+
+            if (!result.Success)
+                return BadRequest(result.Message);
+
+            var categoryRessource = _mapper.Map<Category, CategoryRessource>(category);
+            return Ok(categoryRessource);
         }
     }
 }

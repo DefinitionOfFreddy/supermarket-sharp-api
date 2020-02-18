@@ -7,5 +7,6 @@ namespace supermarket.sharp.api.Domain.Repositories
     public interface ICategoryRepository
     {
         Task<IEnumerable<Category>> ListAsync();
+        Task AddAsync(Category category);
     }
 }
