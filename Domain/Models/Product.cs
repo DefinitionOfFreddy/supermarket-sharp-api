@@ -1,4 +1,4 @@
-﻿namespace supermarket.sharp.api.Domain
+﻿namespace supermarket.sharp.api.Domain.Models
 {
     public class Product
     {
