@@ -27,10 +27,9 @@ namespace supermarket.sharp.api
             services.AddControllers();
 
             services.AddDbContext<AppDbContext>(options =>
-            {
-                options.UseInMemoryDatabase("supermarket-sharp-api-in-memory");
-            });
-
+                options.UseMySql("Server=127.0.0.1;Database=test;User=root;")
+            );
+            
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ICategoryService, CategoryService>();
 
