@@ -1,6 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>supourlmarket_api</RootNamespace>
+    <RootNamespace>supermarket.sharp.api</RootNamespace>
+    <AssemblyName>supermarket.sharp.api</AssemblyName>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Domain" />
+  </ItemGroup>
 </Project>
