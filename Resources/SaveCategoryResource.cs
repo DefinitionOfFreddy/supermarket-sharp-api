@@ -2,7 +2,7 @@
 
 namespace supermarket.sharp.api.Resources
 {
-    public class SaveCategoryRessource
+    public class SaveCategoryResource
     {
         [Required]
         [MaxLength(30)]

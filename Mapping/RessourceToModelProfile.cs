@@ -8,7 +8,7 @@ namespace supermarket.sharp.api.Mapping
     {
         public RessourceToModelProfile()
         {
-            CreateMap<SaveCategoryRessource, Category>();
+            CreateMap<SaveCategoryResource, Category>();
         }
     }
 }

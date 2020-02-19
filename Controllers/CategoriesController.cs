@@ -33,12 +33,12 @@ namespace supermarket.sharp.api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody] SaveCategoryRessource ressource)
+        public async Task<IActionResult> PostAsync([FromBody] SaveCategoryResource resource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessage());
             
-            Category category = _mapper.Map<SaveCategoryRessource, Category>(ressource);
+            Category category = _mapper.Map<SaveCategoryResource, Category>(resource);
             SaveCategoryResponse result = await _categoryService.SaveAsync(category);
 
             if (!result.Success)
@@ -47,5 +47,28 @@ namespace supermarket.sharp.api.Controllers
             var categoryRessource = _mapper.Map<Category, CategoryRessource>(category);
             return Ok(categoryRessource);
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutAsync(int id, [FromBody] SaveCategoryResource resource)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState.GetErrorMessage());
+
+            Category category = _mapper.Map<SaveCategoryResource, Category>(resource);
+
+            SaveCategoryResponse result = await _categoryService.UpdateAsync(id, category);
+
+            if (!result.Success)
+                return BadRequest(result.Message);
+
+            CategoryRessource categoryRessource = _mapper.Map<Category, CategoryRessource>(result.Category);
+
+            return Ok(categoryRessource);
+
+
+
+
+        }
+        
     }
 }

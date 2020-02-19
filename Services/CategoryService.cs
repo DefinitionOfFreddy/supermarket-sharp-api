@@ -40,5 +40,30 @@ namespace supermarket.sharp.api.Services
                 return new SaveCategoryResponse("Error when saving the category : {e.Message}");
             }
         }
+
+        public async Task<SaveCategoryResponse> UpdateAsync(int id, Category category)
+        {
+            
+            Category existingCategory = await _categoryRepository.FindByIdAsync(id);
+                
+            if (existingCategory == null)
+                return new SaveCategoryResponse("Category Not Found");
+
+
+            existingCategory.Name = category.Name;
+            
+            try
+            {
+                _categoryRepository.Update(existingCategory);
+                await _unitOfWork.CompleteAsync();
+                
+                return new SaveCategoryResponse(existingCategory);
+
+            }
+            catch (Exception e)
+            {
+                return new SaveCategoryResponse("Error when updating the category : {e.Message}");
+            }
+        }
     }
 }
