@@ -28,7 +28,7 @@ namespace supermarket.sharp.api
             services.AddControllers();
 
             services.AddDbContext<AppDbContext>(options =>
-                options.UseMySql("Server=127.0.0.1;Database=test;User=root;")
+                options.UseMySql("Server=127.0.0.1;Database=test2;User=root;")
             );
 
 
