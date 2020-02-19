@@ -23,6 +23,10 @@ namespace supermarket.sharp.api.Controllers
             _mapper = mapper;
         }
         
+        /// <summary>
+        /// Lists all categories.
+        /// </summary>
+        /// <returns>List of categories.</returns>
         [HttpGet]
         public async Task<IEnumerable<CategoryResource>> GetAllAsync()
         {
@@ -32,6 +36,11 @@ namespace supermarket.sharp.api.Controllers
             return ressources;
         }
 
+        /// <summary>
+        /// Saves a new category.
+        /// </summary>
+        /// <param name="resource">Category data.</param>
+        /// <returns>Response for the request.</returns>
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody] SaveCategoryResource resource)
         {
@@ -48,6 +57,12 @@ namespace supermarket.sharp.api.Controllers
             return Ok(categoryRessource);
         }
 
+        /// <summary>
+        /// Updates an existing category according to an identifier.
+        /// </summary>
+        /// <param name="id">Category identifier.</param>
+        /// <param name="resource">Updated category data.</param>
+        /// <returns>Response for the request.</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAsync(int id, [FromBody] SaveCategoryResource resource)
         {
@@ -66,7 +81,11 @@ namespace supermarket.sharp.api.Controllers
             return Ok(categoryResource);
 
         }
-
+        
+        /// <summary>
+        /// Deletes a specific Category.
+        /// </summary>
+        /// <param name="id"></param>     
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {

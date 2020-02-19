@@ -20,7 +20,11 @@ namespace supermarket.sharp.api.Controllers
             _productService = productService;
             _mapper = mapper;
         }
-
+        
+        /// <summary>
+        /// Lists all products.
+        /// </summary>
+        /// <returns>List of products.</returns>
         [HttpGet]
         public async Task<IEnumerable<ProductResource>> ListAsync()
         {
