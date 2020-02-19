@@ -24,11 +24,11 @@ namespace supermarket.sharp.api.Controllers
         }
         
         [HttpGet]
-        public async Task<IEnumerable<CategoryRessource>> GetAllAsync()
+        public async Task<IEnumerable<CategoryResource>> GetAllAsync()
         {
             IEnumerable<Category> categories = await _categoryService.ListAsync();
-            IEnumerable<CategoryRessource> ressources =
-                _mapper.Map<IEnumerable<Category>, IEnumerable<CategoryRessource>>(categories); 
+            IEnumerable<CategoryResource> ressources =
+                _mapper.Map<IEnumerable<Category>, IEnumerable<CategoryResource>>(categories); 
             return ressources;
         }
 
@@ -44,7 +44,7 @@ namespace supermarket.sharp.api.Controllers
             if (!result.Success)
                 return BadRequest(result.Message);
 
-            var categoryRessource = _mapper.Map<Category, CategoryRessource>(category);
+            var categoryRessource = _mapper.Map<Category, CategoryResource>(category);
             return Ok(categoryRessource);
         }
 
@@ -61,9 +61,9 @@ namespace supermarket.sharp.api.Controllers
             if (!result.Success)
                 return BadRequest(result.Message);
 
-            CategoryRessource categoryRessource = _mapper.Map<Category, CategoryRessource>(result.Category);
+            CategoryResource categoryResource = _mapper.Map<Category, CategoryResource>(result.Category);
 
-            return Ok(categoryRessource);
+            return Ok(categoryResource);
 
         }
 
@@ -78,9 +78,9 @@ namespace supermarket.sharp.api.Controllers
             if (!result.Success)
                 return BadRequest(result.Message);
 
-            CategoryRessource categoryRessource = _mapper.Map<Category, CategoryRessource>(result.Category);
+            CategoryResource categoryResource = _mapper.Map<Category, CategoryResource>(result.Category);
 
-            return Ok(categoryRessource);
+            return Ok(categoryResource);
         }
         
     }

@@ -20,6 +20,7 @@ namespace supermarket.sharp.api.Persistence.Contexts
             base.OnModelCreating(builder);
 
 
+           
             builder.Entity<Category>().HasKey(p => p.Id);
             builder.Entity<Category>().Property(p => p.Id).IsRequired();
             builder.Entity<Category>().Property(p => p.Name).IsRequired().HasMaxLength(30);
