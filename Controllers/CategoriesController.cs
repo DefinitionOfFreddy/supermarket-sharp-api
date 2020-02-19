@@ -39,7 +39,7 @@ namespace supermarket.sharp.api.Controllers
                 return BadRequest(ModelState.GetErrorMessage());
             
             Category category = _mapper.Map<SaveCategoryResource, Category>(resource);
-            SaveCategoryResponse result = await _categoryService.SaveAsync(category);
+            CategoryResponse result = await _categoryService.SaveAsync(category);
 
             if (!result.Success)
                 return BadRequest(result.Message);
@@ -56,7 +56,7 @@ namespace supermarket.sharp.api.Controllers
 
             Category category = _mapper.Map<SaveCategoryResource, Category>(resource);
 
-            SaveCategoryResponse result = await _categoryService.UpdateAsync(id, category);
+            CategoryResponse result = await _categoryService.UpdateAsync(id, category);
 
             if (!result.Success)
                 return BadRequest(result.Message);
@@ -65,9 +65,22 @@ namespace supermarket.sharp.api.Controllers
 
             return Ok(categoryRessource);
 
+        }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState.GetErrorMessage());
 
+            CategoryResponse result = await _categoryService.DeleteAsync(id);
 
+            if (!result.Success)
+                return BadRequest(result.Message);
+
+            CategoryRessource categoryRessource = _mapper.Map<Category, CategoryRessource>(result.Category);
+
+            return Ok(categoryRessource);
         }
         
     }
